@@ -1,0 +1,22 @@
+{
+  "name": "node-js",
+  "version": "1.0.0",
+  "description": "readme-file",
+  "main": "index.js",
+  "scripts": {
+    "test": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alyesp/node-js.git"
+  },
+  "keywords": [
+    "readme"
+  ],
+  "author": "alyssa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alyesp/node-js/issues"
+  },
+  "homepage": "https://github.com/alyesp/node-js#readme"
+}
