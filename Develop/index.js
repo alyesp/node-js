@@ -30,7 +30,7 @@ const questions = [{
   type: 'input',
   name: 'installation',
   message: 'Please list installation instructions.',
-  //the <when> = if the person selects a installation process allow them to input steps
+  // if the person selects a installation process allow them to input steps
   when: ({confirmInstallation}) => {
     if (confirmInstallation) {
       return true;
@@ -91,11 +91,18 @@ const questions = [{
   }
 },
 {
-  type:'checkbox',
+  type: 'list',
   name:'license',
-  message:'Please choose a license for your repository.',
-  choices: ['']
+  message:'Choose a license for your repository.',
+  choices : ['MIT_License','Boost_Software_License_1.0','Apache_License 2.0','Mozilla_Public_License_2.0'],
 },
+
+// {
+//   type:'checkbox',
+//   name:'license',
+//   message:'Please choose a license for your repository.',
+//   choices: ['']
+// },
 {
   type:'input',
   name:'username',
@@ -139,21 +146,33 @@ const questions = [{
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, data, error => {
     if (error) {
-      return console.error(`'Sorry there was an error: ${error}'`);
+      return console.error('Sorry there was an error:' + error);
     }
   })
-}
+};
 
 const createReadMe = util.promisify(writeToFile);
 
 // TODO: Create a function to initialize app
 function init() {
-  const userAnswers = prompt(questions);
-  console.log('Thank you! The data is being processed into your ReadMe.md:', userAnswers);
-  const myMarkdown = generateMarkdown(userAnswers);
-  console.log(myMarkdown);
-  createReadMe('README.md', myMarkdown);
-}
+  inquirer.prompt(questions)
+  .then((data) => {
+    writeToFile('README1.md', data)
+  })
+  .catch((error) => {
+    error ? console.log(error): console.log('Generating README file')
+  } )
+
+  // try {
+  //   const userAnswers = inquirer.prompt(questions);
+  //   console.log('Thank you! The data is being processed into your README1.md:', userAnswers);
+  //   const myMarkdown = generateMarkdown(userAnswers);
+  //   console.log(myMarkdown);
+  //  await createReadMe('README1.md', myMarkdown);
+  // } catch(error) {
+  // console.log('sorry there was an error' + error);
+//   }
+};
 
 // Function call to initialize app
 init();
