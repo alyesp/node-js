@@ -26,6 +26,12 @@ const questions = [{
   name: 'confirmInstallation',
   message: 'Is there an installation process?'
 },
+//description of your repository.
+{
+  type:'input',
+  name:'description',
+  message:'Please add a description to your repository.'
+},
 {
   type: 'input',
   name: 'installation',
